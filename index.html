@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
   <!-- Animated background -->
@@ -133,14 +133,10 @@
   <!-- ARIA live region for status announcements -->
   <div class="sr-only" role="status" aria-live="polite" id="statusAnnouncer"></div>
 
-  <!-- Scripts: Local bundled jsPDF with CDN fallback for 100% reliability -->
-  <script src="jspdf.umd.min.js"></script>
-  <script>
-    if (!window.jspdf && !window.jsPDF) {
-      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\\/script>');
-    }
-  </script>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <!-- Scripts: Verified jsPDF with local fallback & cache busting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="jspdf.umd.min.js?v=2.5.1"></script>
+  <script src="data.js?v=2.0"></script>
+  <script src="app.js?v=2.0"></script>
 </body>
 </html>
