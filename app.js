@@ -355,11 +355,21 @@
     return new Promise(r => setTimeout(r, ms));
   }
 
+  function getJsPdf() {
+    if (window.jspdf && window.jspdf.jsPDF) return window.jspdf.jsPDF;
+    if (typeof window.jsPDF === 'function') return window.jsPDF;
+    if (window.jspdf && typeof window.jspdf === 'function') return window.jspdf;
+    return null;
+  }
+
   /* ---------- PDF GENERATION (matches attached PDFs) ---------- */
   async function generatePDF() {
-    const { jsPDF } = window.jspdf;
+    const JsPDFClass = getJsPdf();
+    if (!JsPDFClass) {
+      throw new Error("PDF generator library is still loading. Please check your internet connection or reload.");
+    }
     // A4 portrait: 210mm x 297mm
-    const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
+    const doc = new JsPDFClass({ unit: 'mm', format: 'a4', compress: true });
 
     const layout = window.LAB_DATA.layouts[state.selectedLayout] || window.LAB_DATA.layouts.vscode;
     const questions = window.LAB_DATA.questions;

@@ -133,8 +133,13 @@
   <!-- ARIA live region for status announcements -->
   <div class="sr-only" role="status" aria-live="polite" id="statusAnnouncer"></div>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Scripts: Local bundled jsPDF with CDN fallback for 100% reliability -->
+  <script src="jspdf.umd.min.js"></script>
+  <script>
+    if (!window.jspdf && !window.jsPDF) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\\/script>');
+    }
+  </script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
